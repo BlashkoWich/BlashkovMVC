@@ -1,5 +1,6 @@
 ﻿using _Game.Scripts.Core.Configs.Characters.Common.Type;
 using _Game.Scripts.Core.Types.Characters;
+using UnityEngine;
 
 namespace _Game.Scripts.Services.ConfigsServices.Characters
 {

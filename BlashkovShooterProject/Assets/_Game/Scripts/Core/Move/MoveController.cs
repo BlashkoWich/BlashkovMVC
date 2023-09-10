@@ -1,4 +1,5 @@
 ﻿using _Game.Scripts.Architecture.MVC;
+using _Game.Scripts.Core.Configs.Characters.Definite;
 using _Game.Scripts.Core.Input.Move;
 using _Game.Scripts.Core.Types.Characters;
 using _Game.Scripts.Services.ConfigsServices.Characters;
@@ -38,16 +39,21 @@ namespace _Game.Scripts.Core.Move
         private void DirectionHandle(Vector3 direction)
         {
             var positionValue = Model.Position.Value;
-            var targetPosition = positionValue + direction * Time.deltaTime;
+            var targetPosition = positionValue + direction * ((PlayerConfig)_configCharacterService.GetConfig(CharacterType.Player)).MoveConfig.Speed * Time.deltaTime;
             Model.Position.Value = targetPosition;
+            HasNearestWall(direction);
         }
 
         private bool HasNearestWall(Vector3 direction)
         {
             var origin = Model.Position.Value;
-            //Physics.Raycast(origin, direction, )
-            
-            
+            var speed = ((PlayerConfig)_configCharacterService.GetConfig(CharacterType.Player)).MoveConfig.Speed * Time.deltaTime + 0.5f;
+            var layerMasks = LayerMask.GetMask($"Wall", "Default");
+            var ray = new Ray(origin, direction);
+            var raycast = Physics.Raycast(ray, out var hit, speed, layerMasks);
+            Debug.Log(raycast);
+            Debug.DrawRay(ray.origin, ray.direction, raycast? Color.green : Color.red);
+
             return true;
         }
     }
