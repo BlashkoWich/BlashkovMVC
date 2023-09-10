@@ -8,7 +8,7 @@ namespace _Game.Scripts.Architecture.MVC
     where TController : ControllerBase<TModel>
     where TView : ViewBase<TModel>
     {
-        [SerializeField] private TView view;
+        [field: SerializeField] protected TView View { get; private set; }
         protected TController Controller { get; set; }
 
         [Inject]
@@ -32,13 +32,13 @@ namespace _Game.Scripts.Architecture.MVC
         public override void Initialize()
         {
             Controller.Initialize();
-            view.Initialize(Controller.Model);
+            View.Initialize(Controller.Model);
         }
 
         public override void Deactivate()
         {
             Controller.Deactivate();
-            view.Deactivate(Controller.Model);
+            View.Deactivate(Controller.Model);
         }
     }
 

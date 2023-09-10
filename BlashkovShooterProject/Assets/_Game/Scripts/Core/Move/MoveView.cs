@@ -8,6 +8,7 @@ namespace _Game.Scripts.Core.Move
     public class MoveView : ViewBase<MoveModel>
     {
         [SerializeField] private Transform transform;
+        public Vector3 CurrentPosition => transform.position;
         
         public override void Initialize(MoveModel model)
         {

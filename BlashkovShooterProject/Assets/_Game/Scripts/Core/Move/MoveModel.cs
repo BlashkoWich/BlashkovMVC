@@ -7,9 +7,9 @@ namespace _Game.Scripts.Core.Move
     {
         public ReactiveProperty<Vector3> Position { get; set; }
 
-        public MoveModel()
+        public MoveModel(Vector3 currentPosition)
         {
-            Position = new ReactiveProperty<Vector3>();
+            Position = new ReactiveProperty<Vector3>(currentPosition);
         }
     }
 }

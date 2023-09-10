@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePlayerAggregator:
-    view:
+    <View>k__BackingField:
       transform: {fileID: 1100729049}
 --- !u!4 &1100729049
 Transform:

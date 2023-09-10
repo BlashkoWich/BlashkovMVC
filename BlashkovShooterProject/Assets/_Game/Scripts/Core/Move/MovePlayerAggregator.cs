@@ -11,7 +11,7 @@ namespace _Game.Scripts.Core.Move
         }
         public override MoveModel CreateModel()
         {
-            return new MoveModel();
+            return new MoveModel(View.CurrentPosition);
         }
     }
 }

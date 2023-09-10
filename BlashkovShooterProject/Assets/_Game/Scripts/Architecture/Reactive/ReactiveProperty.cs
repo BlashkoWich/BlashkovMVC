@@ -20,5 +20,13 @@ namespace _Game.Scripts.Architecture.Reactive
         }
 
         public event Action<T> OnChangeValue;
+
+        public ReactiveProperty(T value)
+        {
+            _value = value;
+        }
+        public ReactiveProperty()
+        {
+        }
     }
 }
