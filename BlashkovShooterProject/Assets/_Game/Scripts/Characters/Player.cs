@@ -1,10 +1,16 @@
-﻿using _Game.Scripts.Core.Move;
+﻿using _Game.Scripts.Architecture.MVC;
+using _Game.Scripts.Core.Move;
 using UnityEngine;
 
 namespace _Game.Scripts.Characters
 {
-    public class Player : MonoBehaviour
+    public class Player : MVCHandlerBase
     {
-        [SerializeField] private MovePlayerAggregate _movePlayerAggregate;
+        [SerializeField] private MovePlayerAggregator movePlayerAggregator;
+
+        private void Awake()
+        {
+            ActivateMVCs();
+        }
     }
 }

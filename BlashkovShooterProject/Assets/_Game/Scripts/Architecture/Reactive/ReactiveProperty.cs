@@ -11,7 +11,7 @@ namespace _Game.Scripts.Architecture.Reactive
             get => _value;
             set
             {
-                if (!_value.Equals(value)) 
+                if (_value.Equals(value)) 
                     return;
                 
                 _value = value;

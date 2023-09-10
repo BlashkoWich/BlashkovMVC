@@ -2,16 +2,18 @@
 {
     public abstract class ControllerBase<TModel>
     {
-        protected TModel Model { get; private set; }
+        public TModel Model { get; private set; }
 
-        protected abstract TModel CreateModel();
-
-        public virtual TModel Initialize()
+        public void SetModel(TModel model)
         {
-            if(Model == null)
-                CreateModel();
-            
-            return Model;
+            Model = model;
+        }
+        public virtual void Initialize()
+        {
+        }
+
+        public virtual void Deactivate()
+        {
         }
     }
 }
