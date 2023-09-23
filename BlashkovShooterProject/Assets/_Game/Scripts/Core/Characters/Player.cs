@@ -2,7 +2,7 @@
 using _Game.Scripts.Core.Move;
 using UnityEngine;
 
-namespace _Game.Scripts.Characters
+namespace _Game.Scripts.Core.Characters
 {
     public class Player : MVCHandlerBase
     {

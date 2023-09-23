@@ -1,4 +1,5 @@
-﻿using _Game.Scripts.Architecture.MVC;
+﻿using System.Collections.Generic;
+using _Game.Scripts.Architecture.MVC;
 using _Game.Scripts.Core.Configs.Characters.Definite;
 using _Game.Scripts.Core.Input.Move;
 using _Game.Scripts.Core.Types.Characters;
@@ -11,15 +12,19 @@ namespace _Game.Scripts.Core.Move
     public class MoveController : ControllerBase<MoveModel>
     {
         private IMoveInputService _moveInputService;
-        private IConfigCharacterService _configCharacterService;
+        private IPlayerConfigService _playerConfigService;
+        
+        private Collider[] _collidersBuffer = new Collider[1];
+
+        public float Speed => _playerConfigService.PlayerConfig.MoveConfig.Speed * Time.deltaTime;
 
         [Inject]
         private void InjectMe(
             IMoveInputService moveInputService,
-            IConfigCharacterService configCharacterService)
+            IPlayerConfigService playerConfigService)
         {
             _moveInputService = moveInputService;
-            _configCharacterService = configCharacterService;
+            _playerConfigService = playerConfigService;
         }
 
         public override void Initialize()
@@ -38,23 +43,13 @@ namespace _Game.Scripts.Core.Move
 
         private void DirectionHandle(Vector3 direction)
         {
-            var positionValue = Model.Position.Value;
-            var targetPosition = positionValue + direction * ((PlayerConfig)_configCharacterService.GetConfig(CharacterType.Player)).MoveConfig.Speed * Time.deltaTime;
-            Model.Position.Value = targetPosition;
-            HasNearestWall(direction);
+            Model.Speed.Value = direction * Speed;
         }
 
-        private bool HasNearestWall(Vector3 direction)
+        private Vector3 GetTargetPosition(Vector3 direction)
         {
-            var origin = Model.Position.Value;
-            var speed = ((PlayerConfig)_configCharacterService.GetConfig(CharacterType.Player)).MoveConfig.Speed * Time.deltaTime + 0.5f;
-            var layerMasks = LayerMask.GetMask($"Wall", "Default");
-            var ray = new Ray(origin, direction);
-            var raycast = Physics.Raycast(ray, out var hit, speed, layerMasks);
-            Debug.Log(raycast);
-            Debug.DrawRay(ray.origin, ray.direction, raycast? Color.green : Color.red);
-
-            return true;
+            var currentPosition = Model.Speed.Value;
+            return currentPosition + direction * Speed;
         }
     }
 }

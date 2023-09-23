@@ -88,5 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb84cc8f312a40be9eeea15a6d7ebb6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterConfigs:
-  - {fileID: 11400000, guid: 46da1be3cc54cc74391f69bbd4c43290, type: 2}
+  playerConfig: {fileID: 11400000, guid: 46da1be3cc54cc74391f69bbd4c43290, type: 2}

@@ -1,4 +1,4 @@
-﻿using _Game.Scripts.Core.Configs.Characters.Common.Type;
+﻿using _Game.Scripts.Core.Configs.Characters.Definite;
 using UnityEngine;
 using Zenject;
 
@@ -6,14 +6,11 @@ namespace _Game.Scripts.Installers.Installers.ScriptableObjectInstallers
 {
     public class ConfigsInstaller : MonoInstaller
     {
-        [SerializeField] private CharacterConfig[] characterConfigs;
+        [SerializeField] private PlayerConfig playerConfig;
 
         public override void InstallBindings()
         {
-            foreach (var characterConfig in characterConfigs)
-            {
-                Container.BindInterfacesAndSelfTo<CharacterConfig>().FromInstance(characterConfig).AsSingle();
-            }
+            Container.BindInterfacesAndSelfTo<PlayerConfig>().FromInstance(playerConfig).AsSingle();
         }
     }
 }

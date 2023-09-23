@@ -7,22 +7,21 @@ namespace _Game.Scripts.Core.Move
     [Serializable]
     public class MoveView : ViewBase<MoveModel>
     {
-        [SerializeField] private Transform transform;
-        public Vector3 CurrentPosition => transform.position;
+        [SerializeField] private CharacterController characterController;
         
         public override void Initialize(MoveModel model)
         {
-            model.Position.OnChangeValue += SetPosition;
+            model.Speed.OnChangeValue += SetPosition;
         }
 
         public override void Deactivate(MoveModel model)
         {
-            model.Position.OnChangeValue -= SetPosition;
+            model.Speed.OnChangeValue -= SetPosition;
         }
 
-        public void SetPosition(Vector3 position)
+        private void SetPosition(Vector3 speed)
         {
-            transform.position = position;
+            characterController.Move(speed);
         }
     }
 }

@@ -3,13 +3,14 @@ using UnityEngine;
 
 namespace _Game.Scripts.Core.Move
 {
+    [System.Serializable]
     public class MoveModel
-    {
-        public ReactiveProperty<Vector3> Position { get; set; }
+    { 
+        public ReactiveProperty<Vector3> Speed { get; } = new();
 
-        public MoveModel(Vector3 currentPosition)
+        public void Initialize()
         {
-            Position = new ReactiveProperty<Vector3>(currentPosition);
+            Speed.Value = Vector3.zero;
         }
     }
 }

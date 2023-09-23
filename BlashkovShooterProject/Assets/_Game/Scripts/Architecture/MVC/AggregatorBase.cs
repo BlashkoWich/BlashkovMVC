@@ -9,6 +9,7 @@ namespace _Game.Scripts.Architecture.MVC
     where TView : ViewBase<TModel>
     {
         [field: SerializeField] protected TView View { get; private set; }
+        [field: SerializeField] protected TModel Model { get; private set; }
         protected TController Controller { get; set; }
 
         [Inject]
@@ -16,11 +17,9 @@ namespace _Game.Scripts.Architecture.MVC
         {
             var controller = CreateController();
             container.Inject(controller);
-            var model = CreateModel();
-            Link(controller, model);
+            Link(controller, Model);
         }
         public abstract TController CreateController();
-        public abstract TModel CreateModel();
 
         protected virtual void Link(TController controller, TModel model)
         {

@@ -9,9 +9,12 @@ namespace _Game.Scripts.Core.Move
         {
             return new MoveController();
         }
-        public override MoveModel CreateModel()
+
+        public override void Initialize()
         {
-            return new MoveModel(View.CurrentPosition);
+            base.Initialize();
+            
+            Model.Initialize();
         }
     }
 }
