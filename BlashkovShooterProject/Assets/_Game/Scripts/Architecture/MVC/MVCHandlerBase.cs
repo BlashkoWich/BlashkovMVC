@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
+using _Game.Scripts.Architecture.MVC.Model;
+using _Game.Scripts.Architecture.MVC.Model.Factory;
 using UnityEngine;
 using Zenject;
 
@@ -21,6 +24,7 @@ namespace _Game.Scripts.Architecture.MVC
                     AggregateBases.Add(aggreator);
                 }
             }
+            
             foreach (var aggregateBase in AggregateBases)
             {
                 container.Inject(aggregateBase);

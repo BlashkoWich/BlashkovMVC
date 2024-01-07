@@ -600,6 +600,8 @@ MonoBehaviour:
     parent: {fileID: 1100729049}
     <View>k__BackingField:
       characterController: {fileID: 1100729051}
+  _playerIdentificationAggregator:
+    parent: {fileID: 1100729049}
 --- !u!4 &1100729049
 Transform:
   m_ObjectHideFlags: 0
